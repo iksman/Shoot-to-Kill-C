@@ -15,7 +15,7 @@ namespace Shoot_to_Kill {
     public Game1(int width, int height, bool fullscreen) {
       graphics = new GraphicsDeviceManager(this);
       Content.RootDirectory = "Content";
-      tileList = Tiles.construct();
+      tileList = Tiles.construct(0);
       graphics.PreferredBackBufferWidth = width;
       graphics.PreferredBackBufferHeight = height;
       graphics.IsFullScreen = fullscreen;
