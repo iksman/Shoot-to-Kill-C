@@ -14,14 +14,13 @@ namespace Shoot_to_Kill {
     BackgroundMap map;
     //List<ITile> tileList;
     List<Tuple<ITile,Vector2>> completeList;
+    List<DrawableTile> drawableTiles = new List<DrawableTile>();
     public Game1(int width, int height, bool fullscreen) {
       graphics = new GraphicsDeviceManager(this);
       Content.RootDirectory = "Content";
       completeList = Statics.convertTiles(50, 50, Tiles.construct(0), 17, 17);
-      for (int i = 0; i < (17 * 17); i++) {
-        Console.WriteLine(completeList[i].Item2.ToString());
-      }
-      map = new BackgroundMap(Content.Load<Texture2D>("0.png"));
+      
+      
       graphics.PreferredBackBufferWidth = width;
       graphics.PreferredBackBufferHeight = height;
       graphics.IsFullScreen = fullscreen;
@@ -34,7 +33,11 @@ namespace Shoot_to_Kill {
 
     protected override void LoadContent() {
       spriteBatch = new SpriteBatch(GraphicsDevice);
-
+      map = new BackgroundMap(Content.Load<Texture2D>("0.png"));
+      foreach (Tuple<ITile, Vector2> tile in completeList) {
+        drawableTiles.Add(new DrawableTile(Content.Load<Texture2D>(tile.Item1.type() + ".png"), tile.Item2, tile.Item1));
+        //Console.WriteLine(tile.Item1.type());
+      }
     }
 
     protected override void UnloadContent() {
@@ -52,8 +55,8 @@ namespace Shoot_to_Kill {
       GraphicsDevice.Clear(Color.CornflowerBlue);
       spriteBatch.Begin();
       map.Draw(spriteBatch);
-      for (int i = 0; i < (17 * 17); i++) {
-        
+      foreach (DrawableTile tile in drawableTiles) {
+        tile.Draw(spriteBatch);
       }
       spriteBatch.End();
       base.Draw(gameTime);

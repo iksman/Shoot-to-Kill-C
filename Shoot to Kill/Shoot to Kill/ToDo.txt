@@ -1,0 +1,2 @@
+﻿Make water into seperate tile, to be able to shoot trough
+Make allignment checker, and border checker

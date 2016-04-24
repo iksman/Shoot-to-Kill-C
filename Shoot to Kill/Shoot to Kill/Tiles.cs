@@ -255,6 +255,8 @@ namespace Shoot_to_Kill {
           
         }
         tileList.Add(new NormalTile(false, true, true, false));
+        Console.WriteLine("1: " + (tileList.Count() - oldCount).ToString());
+        oldCount = tileList.Count();
         //Line 2
         tileList.Add(new NormalTile(false, true, false, true));
         for (int i = 0; i < 4; i++) {
@@ -265,9 +267,11 @@ namespace Shoot_to_Kill {
         }
         tileList.Add(getAllCoin());
         tileList.Add(new NormalTile(true, true, true, false));
+        Console.WriteLine("1: " + (tileList.Count() - oldCount).ToString());
+        oldCount = tileList.Count();
         //Line 3
         tileList.Add(new NormalTile(true, true, false, true));
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 3; i++) {
           tileList.Add(getAllBush());
         }
         tileList.Add(new BushTile(true, false, true, true));
@@ -275,9 +279,13 @@ namespace Shoot_to_Kill {
         tileList.Add(new NormalTile(true, false, true, true));
         tileList.Add(getAllNormal());
         tileList.Add(new NormalTile(true, true, true, false));
+        tileList.Add(new UntraverseableTile());
+        tileList.Add(new NormalTile(true, true, false, true));
         for (int i = 0; i < 6; i++) {
           tileList.Add(getAllNormal());
         }
+        Console.WriteLine("1: " + (tileList.Count() - oldCount).ToString());
+        oldCount = tileList.Count();
         //Line 4
         tileList.Add(new NormalTile(true, true, false, true));
         tileList.Add(getAllBush());
@@ -295,6 +303,8 @@ namespace Shoot_to_Kill {
         }
         tileList.Add(getAllNormal());
         tileList.Add(new NormalTile(true, true, true, false));
+        Console.WriteLine("1: " + (tileList.Count() - oldCount).ToString());
+        oldCount = tileList.Count();
         //Line 5
         tileList.Add(new NormalTile(true, true, false, true));
         for (int i = 0; i < 3; i++) {
@@ -313,6 +323,8 @@ namespace Shoot_to_Kill {
         tileList.Add(getAllNormal());
         tileList.Add(getAllNormal());
         tileList.Add(new NormalTile(true, true, true, false));
+        Console.WriteLine("1: " + (tileList.Count() - oldCount).ToString());
+        oldCount = tileList.Count();
         //Line 6
         tileList.Add(new NormalTile(true, true, false, true));
         tileList.Add(getAllNormal());
@@ -328,6 +340,8 @@ namespace Shoot_to_Kill {
           tileList.Add(getAllNormal());
         }
         tileList.Add(new NormalTile(true, true, true, false));
+        Console.WriteLine("1: " + (tileList.Count() - oldCount).ToString());
+        oldCount = tileList.Count();
         //Line 7
         tileList.Add(new NormalTile(true, true, false, true));
         for (int i = 0; i < 9; i++) {
@@ -340,6 +354,8 @@ namespace Shoot_to_Kill {
         tileList.Add(getAllNormal());
         tileList.Add(getAllNormal());
         tileList.Add(new NormalTile(true, true, true, false));
+        Console.WriteLine("1: " + (tileList.Count() - oldCount).ToString());
+        oldCount = tileList.Count();
         //Line 8
         tileList.Add(new NormalTile(true, false, false, true));
         tileList.Add(new NormalTile(true, false, true, true));
@@ -357,6 +373,8 @@ namespace Shoot_to_Kill {
         tileList.Add(getAllNormal());
         tileList.Add(new NormalTile(true, false, true, true));
         tileList.Add(new NormalTile(true, false, true, false));
+        Console.WriteLine("1: " + (tileList.Count() - oldCount).ToString());
+        oldCount = tileList.Count();
         //Line 9
         tileList.Add(new HighwayTile(false, true, false, true));
         tileList.Add(new HighwayTile(false, true, true, true));
@@ -375,6 +393,8 @@ namespace Shoot_to_Kill {
         tileList.Add(getAllHighway());
         tileList.Add(new HighwayTile(false, true, true, true));
         tileList.Add(new HighwayTile(false, true, true, false));
+        Console.WriteLine("1: " + (tileList.Count() - oldCount).ToString());
+        oldCount = tileList.Count();
         //Line 10
         tileList.Add(new HighwayTile(true, true, false, true));
         for (int i = 0; i < 4; i++) {
@@ -390,6 +410,8 @@ namespace Shoot_to_Kill {
           tileList.Add(getAllHighway());
         }
         tileList.Add(new HighwayTile(true, true, true, false));
+        Console.WriteLine("1: " + (tileList.Count() - oldCount).ToString());
+        oldCount = tileList.Count();
         // Line 11
         tileList.Add(new HighwayTile(true, false, false, true));
         tileList.Add(new HighwayTile(true, false, true, true));
@@ -407,7 +429,8 @@ namespace Shoot_to_Kill {
           tileList.Add(new HighwayTile(true, false, true, true));
         }
         tileList.Add(new HighwayTile(true, true, true, false));
-
+        Console.WriteLine("1: " + (tileList.Count() - oldCount).ToString());
+        oldCount = tileList.Count();
         // Line 12
         tileList.Add(new NormalTile(false, true, false, true));
         tileList.Add(new NormalTile(false, true, true, true));
@@ -425,7 +448,8 @@ namespace Shoot_to_Kill {
           tileList.Add(new NormalTile(false, true, true, true));
         }
         tileList.Add(new NormalTile(true, true, true, false));
-
+        Console.WriteLine("1: " + (tileList.Count() - oldCount).ToString());
+        oldCount = tileList.Count();
         // Line 13
         tileList.Add(new NormalTile(true, true, false, false));
         tileList.Add(new UntraverseableTile());
@@ -442,6 +466,8 @@ namespace Shoot_to_Kill {
         tileList.Add(getAllNormal());
         tileList.Add(getAllNormal());
         tileList.Add(new NormalTile(true, true, true, false));
+        Console.WriteLine("1: " + (tileList.Count() - oldCount).ToString());
+        oldCount = tileList.Count();
         // Line 14
         tileList.Add(new BushTile(true, true, false, false));
         tileList.Add(new UntraverseableTile());
@@ -459,6 +485,8 @@ namespace Shoot_to_Kill {
         tileList.Add(new NormalTile(true, true, false, true));
         tileList.Add(getAllNormal());
         tileList.Add(new NormalTile(true, true, true, false));
+        Console.WriteLine("1: " + (tileList.Count() - oldCount).ToString());
+        oldCount = tileList.Count();
         // Line 15
         tileList.Add(new BushTile(true, true, false, true));
         tileList.Add(new BushTile(false,true,true,true));
@@ -476,6 +504,8 @@ namespace Shoot_to_Kill {
         tileList.Add(new NormalTile(true, true, false, true));
         tileList.Add(getAllNormal());
         tileList.Add(new NormalTile(true, true, true, false));
+        Console.WriteLine("1: " + (tileList.Count() - oldCount).ToString());
+        oldCount = tileList.Count();
         // Line 16
         tileList.Add(new BushTile(true, true, false, true));
         tileList.Add(getAllCoin());
@@ -493,6 +523,8 @@ namespace Shoot_to_Kill {
         tileList.Add(getAllNormal());
         tileList.Add(getAllNormal());
         tileList.Add(new NormalTile(true, true, true, false));
+        Console.WriteLine("1: " + (tileList.Count() - oldCount).ToString());
+        oldCount = tileList.Count();
         // Line 17
         tileList.Add(new BushTile(true, false, false, true));
         tileList.Add(new BushTile(true, false, true, true));
@@ -504,6 +536,8 @@ namespace Shoot_to_Kill {
           tileList.Add(new NormalTile(true, false, true, true));
         }
         tileList.Add(new NormalTile(true, false, true, false));
+        Console.WriteLine("1: " + (tileList.Count() - oldCount).ToString());
+        oldCount = tileList.Count();
       }
       return tileList;
     }
