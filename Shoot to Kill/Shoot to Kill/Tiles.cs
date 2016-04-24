@@ -244,25 +244,27 @@ namespace Shoot_to_Kill {
 
     public static List<ITile> construct(int map){
       List<ITile> tileList = new List<ITile>();
+      tileList.Clear();
+      int oldCount = 0;
       if (map == 0) {
         //Line 1
+        Console.WriteLine(tileList.Count());
         tileList.Add(new NormalTile(false, true, false, true));
-        for (int i = 0; i < 16; i++) {
+        for (int i = 0; i < 15; i++) {
           tileList.Add(new NormalTile(false, true, true, true));
+          
         }
         tileList.Add(new NormalTile(false, true, true, false));
-
         //Line 2
         tileList.Add(new NormalTile(false, true, false, true));
-        for (int i = 0; i < 5; i++) {
-          tileList.Add(new BushTile(true, true, true, true));
+        for (int i = 0; i < 4; i++) {
+          tileList.Add(getAllBush());
         }
-        for (int i = 0; i < 11; i++) {
+        for (int i = 0; i < 10; i++) {
           tileList.Add(getAllNormal());
         }
         tileList.Add(getAllCoin());
         tileList.Add(new NormalTile(true, true, true, false));
-
         //Line 3
         tileList.Add(new NormalTile(true, true, false, true));
         for (int i = 0; i < 4; i++) {
@@ -273,11 +275,9 @@ namespace Shoot_to_Kill {
         tileList.Add(new NormalTile(true, false, true, true));
         tileList.Add(getAllNormal());
         tileList.Add(new NormalTile(true, true, true, false));
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < 6; i++) {
           tileList.Add(getAllNormal());
         }
-        tileList.Add(new NormalTile(true, true, true, false));
-
         //Line 4
         tileList.Add(new NormalTile(true, true, false, true));
         tileList.Add(getAllBush());
@@ -290,14 +290,14 @@ namespace Shoot_to_Kill {
         tileList.Add(new NormalTile(true, true, true, false));
         tileList.Add(new UntraverseableTile());
         tileList.Add(new NormalTile(true, true, false, true));
-        for (int i = 0; i > 6; i++) {
-          tileList.Add(getAllNormal());
+        for (int i = 0; i < 4; i++) {
+          tileList.Add(getAllBush());
         }
+        tileList.Add(getAllNormal());
         tileList.Add(new NormalTile(true, true, true, false));
-
         //Line 5
         tileList.Add(new NormalTile(true, true, false, true));
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 3; i++) {
           tileList.Add(getAllBush());
         }
         tileList.Add(new BushTile(false, true, true, true));
@@ -307,32 +307,30 @@ namespace Shoot_to_Kill {
         tileList.Add(getAllNormal());
         tileList.Add(new NormalTile(false, true, true, true));
         tileList.Add(getAllNormal());
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 3; i++) {
           tileList.Add(getAllBush());
         }
         tileList.Add(getAllNormal());
         tileList.Add(getAllNormal());
         tileList.Add(new NormalTile(true, true, true, false));
-
         //Line 6
         tileList.Add(new NormalTile(true, true, false, true));
         tileList.Add(getAllNormal());
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 3; i++) {
           tileList.Add(getAllBush());
         }
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < 6; i++) {
           tileList.Add(getAllNormal());
         }
         tileList.Add(new NormalTile(true, false, true, true));
         tileList.Add(new NormalTile(true, false, true, true));
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 3; i++) {
           tileList.Add(getAllNormal());
         }
         tileList.Add(new NormalTile(true, true, true, false));
-
         //Line 7
         tileList.Add(new NormalTile(true, true, false, true));
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 9; i++) {
           tileList.Add(getAllNormal());
         }
         tileList.Add(new NormalTile(true, true, true, false));
@@ -342,13 +340,12 @@ namespace Shoot_to_Kill {
         tileList.Add(getAllNormal());
         tileList.Add(getAllNormal());
         tileList.Add(new NormalTile(true, true, true, false));
-
         //Line 8
         tileList.Add(new NormalTile(true, false, false, true));
         tileList.Add(new NormalTile(true, false, true, true));
         tileList.Add(getAllNormal());
         tileList.Add(getAllNormal());
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 4; i++) {
           tileList.Add(new NormalTile(true, false, true, true));
         }
         tileList.Add(getAllNormal());
@@ -360,7 +357,6 @@ namespace Shoot_to_Kill {
         tileList.Add(getAllNormal());
         tileList.Add(new NormalTile(true, false, true, true));
         tileList.Add(new NormalTile(true, false, true, false));
-
         //Line 9
         tileList.Add(new HighwayTile(false, true, false, true));
         tileList.Add(new HighwayTile(false, true, true, true));
@@ -379,6 +375,135 @@ namespace Shoot_to_Kill {
         tileList.Add(getAllHighway());
         tileList.Add(new HighwayTile(false, true, true, true));
         tileList.Add(new HighwayTile(false, true, true, false));
+        //Line 10
+        tileList.Add(new HighwayTile(true, true, false, true));
+        for (int i = 0; i < 4; i++) {
+          tileList.Add(getAllHighway());
+        }
+        tileList.Add(new HighwayTile(true, true, true, false));
+        tileList.Add(new UntraverseableTile());
+        tileList.Add(new HighwayTile(true, true, false, true));
+        tileList.Add(getAllHighway());
+        tileList.Add(new HighwayTile(false, true, true, true));
+        tileList.Add(new HighwayTile(false, true, true, true));
+        for (int i = 0; i < 5; i++) {
+          tileList.Add(getAllHighway());
+        }
+        tileList.Add(new HighwayTile(true, true, true, false));
+        // Line 11
+        tileList.Add(new HighwayTile(true, false, false, true));
+        tileList.Add(new HighwayTile(true, false, true, true));
+        tileList.Add(new HighwayTile(true, false, true, true));
+        tileList.Add(getAllHighway());
+        tileList.Add(getAllHighway());
+        tileList.Add(new HighwayTile(true, false, true, false));
+        tileList.Add(new UntraverseableTile());
+        tileList.Add(new HighwayTile(true, false, false, true));
+        tileList.Add(new HighwayTile(true, false, true, true));
+        for (int i = 0; i < 3; i++) {
+          tileList.Add(getAllHighway());
+        }
+        for (int i = 0; i < 4; i++) {
+          tileList.Add(new HighwayTile(true, false, true, true));
+        }
+        tileList.Add(new HighwayTile(true, true, true, false));
+
+        // Line 12
+        tileList.Add(new NormalTile(false, true, false, true));
+        tileList.Add(new NormalTile(false, true, true, true));
+        tileList.Add(new NormalTile(false, true, true, true));
+        tileList.Add(getAllNormal());
+        tileList.Add(getAllNormal());
+        for (int i = 0; i < 4; i++) {
+          tileList.Add(new NormalTile(false, true, true, true));
+        }
+        tileList.Add(getAllNormal());
+        tileList.Add(new NormalTile(true, false, true, true));
+        tileList.Add(new NormalTile(true,false,true,true));
+        
+        for (int i = 0; i < 4; i++) {
+          tileList.Add(new NormalTile(false, true, true, true));
+        }
+        tileList.Add(new NormalTile(true, true, true, false));
+
+        // Line 13
+        tileList.Add(new NormalTile(true, true, false, false));
+        tileList.Add(new UntraverseableTile());
+        tileList.Add(new NormalTile(true, true, false, true));
+        tileList.Add(new NormalTile(true, false, true, true));
+        for (int i = 0; i < 5; i++) {
+          tileList.Add(getAllNormal());
+        }
+        tileList.Add(new NormalTile(true, true, true, false));
+        tileList.Add(new TruckTile(false, true, false, true));
+        tileList.Add(new NormalTile(false, true, true, true));
+        tileList.Add(getAllNormal());
+        tileList.Add(new NormalTile(true, false, true, true));
+        tileList.Add(getAllNormal());
+        tileList.Add(getAllNormal());
+        tileList.Add(new NormalTile(true, true, true, false));
+        // Line 14
+        tileList.Add(new BushTile(true, true, false, false));
+        tileList.Add(new UntraverseableTile());
+        tileList.Add(new NormalTile(true, true, false, false));
+        tileList.Add(new UntraverseableTile());
+        tileList.Add(new NormalTile(true, true, false, true));
+        for (int i = 0; i < 4; i++) {
+          tileList.Add(getAllNormal());
+        }
+        tileList.Add(new NormalTile(true, true, true, false));
+        tileList.Add(new TruckTile(true, true, false, false));
+        tileList.Add(new NormalTile(true, true, false, true));
+        tileList.Add(new NormalTile(true, true, true, false));
+        tileList.Add(new UntraverseableTile());
+        tileList.Add(new NormalTile(true, true, false, true));
+        tileList.Add(getAllNormal());
+        tileList.Add(new NormalTile(true, true, true, false));
+        // Line 15
+        tileList.Add(new BushTile(true, true, false, true));
+        tileList.Add(new BushTile(false,true,true,true));
+        tileList.Add(new BushTile(true, true, true, false));
+        tileList.Add(new UntraverseableTile());
+        tileList.Add(new NormalTile(true, true, false, true));
+        for (int i = 0; i < 4; i++) {
+          tileList.Add(getAllNormal());
+        }
+        tileList.Add(new BushTile(true, true, true, false));
+        tileList.Add(new GunTile(true, false, false, false));
+        tileList.Add(new NormalTile(true, true, false, true));
+        tileList.Add(new NormalTile(true, true, true, false));
+        tileList.Add(new UntraverseableTile());
+        tileList.Add(new NormalTile(true, true, false, true));
+        tileList.Add(getAllNormal());
+        tileList.Add(new NormalTile(true, true, true, false));
+        // Line 16
+        tileList.Add(new BushTile(true, true, false, true));
+        tileList.Add(getAllCoin());
+        tileList.Add(getAllBush());
+        tileList.Add(new NormalTile(false, false, true, true));
+        tileList.Add(new NormalTile(true, false, true, true));
+        for (int i = 0; i < 4; i++) {
+          tileList.Add(getAllNormal());
+        }
+        tileList.Add(getAllBush());
+        tileList.Add(new BushTile(false, true, true, true));
+        tileList.Add(getAllNormal());
+        tileList.Add(getAllNormal());
+        tileList.Add(new NormalTile(false, true, true, true));
+        tileList.Add(getAllNormal());
+        tileList.Add(getAllNormal());
+        tileList.Add(new NormalTile(true, true, true, false));
+        // Line 17
+        tileList.Add(new BushTile(true, false, false, true));
+        tileList.Add(new BushTile(true, false, true, true));
+        tileList.Add(new BushTile(true, false, true, false));
+        tileList.Add(new UntraverseableTile());
+        tileList.Add(new UntraverseableTile());
+        tileList.Add(new NormalTile(true, false, false, true));
+        for (int i = 0; i < 10; i++) {
+          tileList.Add(new NormalTile(true, false, true, true));
+        }
+        tileList.Add(new NormalTile(true, false, true, false));
       }
       return tileList;
     }

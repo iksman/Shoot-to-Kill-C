@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
+using System;
 
 namespace Shoot_to_Kill {
   /// <summary>
@@ -10,12 +11,17 @@ namespace Shoot_to_Kill {
   public class Game1 : Game {
     GraphicsDeviceManager graphics;
     SpriteBatch spriteBatch;
-    List<ITile> tileList;
-
+    BackgroundMap map;
+    //List<ITile> tileList;
+    List<Tuple<ITile,Vector2>> completeList;
     public Game1(int width, int height, bool fullscreen) {
       graphics = new GraphicsDeviceManager(this);
       Content.RootDirectory = "Content";
-      tileList = Tiles.construct(0);
+      completeList = Statics.convertTiles(50, 50, Tiles.construct(0), 17, 17);
+      for (int i = 0; i < (17 * 17); i++) {
+        Console.WriteLine(completeList[i].Item2.ToString());
+      }
+      map = new BackgroundMap(Content.Load<Texture2D>("0.png"));
       graphics.PreferredBackBufferWidth = width;
       graphics.PreferredBackBufferHeight = height;
       graphics.IsFullScreen = fullscreen;
@@ -45,7 +51,10 @@ namespace Shoot_to_Kill {
     protected override void Draw(GameTime gameTime) {
       GraphicsDevice.Clear(Color.CornflowerBlue);
       spriteBatch.Begin();
-
+      map.Draw(spriteBatch);
+      for (int i = 0; i < (17 * 17); i++) {
+        
+      }
       spriteBatch.End();
       base.Draw(gameTime);
     }
