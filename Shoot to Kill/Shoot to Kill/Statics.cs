@@ -64,31 +64,41 @@ namespace Shoot_to_Kill {
 			return i;
 		}
 
-		public static void debugTiles(KeyboardState oldKeyboardState, KeyboardState newKeyboardState, SpriteBatch spriteBatch, List<Character> players) {
+		public static void debugTiles(KeyboardState oldKeyboardState, KeyboardState newKeyboardState, SpriteBatch spriteBatch, List<Character> players, MouseState oldMouseState, MouseState newMouseState) {
 			if (oldKeyboardState.IsKeyUp(Keys.Enter) == true && newKeyboardState.IsKeyDown(Keys.Enter) == true) {
 				foreach (Character character in players) {
 					character.setPos(1);
-					character.Update(spriteBatch);
+					character.DrawBorders(spriteBatch, Statics.getOtherPositions(players, character));
 				}
 			}
 
 			if (oldKeyboardState.IsKeyUp(Keys.RightShift) == true && newKeyboardState.IsKeyDown(Keys.RightShift) == true) {
 				foreach (Character character in players) {
 					character.setPos(-1);
-					character.Update(spriteBatch);
+					character.DrawBorders(spriteBatch, Statics.getOtherPositions(players, character));
 				}
 			}
 		}
 
-		public static void debugSpecificChar(KeyboardState oldKeyboardState, KeyboardState newKeyboardState, SpriteBatch spriteBatch, Character character) {
+		public static List<int> getOtherPositions (List<Character> chars, Character character) {
+			List<int> returnList = new List<int>();
+			foreach (Character otherchar in chars) {
+				if (otherchar != character) {
+					returnList.Add(otherchar.currentPos());
+				}
+			}
+			return returnList;
+		}
+
+		public static void debugSpecificChar(KeyboardState oldKeyboardState, KeyboardState newKeyboardState, SpriteBatch spriteBatch, Character character, List<Character> characters, MouseState oldMouseState, MouseState newMouseState) {
 			if (oldKeyboardState.IsKeyUp(Keys.Enter) == true && newKeyboardState.IsKeyDown(Keys.Enter) == true) {
 				character.setPos(1);
-				character.Update(spriteBatch);
+				character.DrawBorders(spriteBatch, getOtherPositions(characters, character));
 			}
 
 			if (oldKeyboardState.IsKeyUp(Keys.RightShift) == true && newKeyboardState.IsKeyDown(Keys.RightShift) == true) {
 				character.setPos(-1);
-				character.Update(spriteBatch);
+				character.DrawBorders(spriteBatch, getOtherPositions(characters, character));
 			}
 		}
 	}

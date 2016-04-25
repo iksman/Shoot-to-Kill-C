@@ -13,7 +13,7 @@ namespace Shoot_to_Kill {
         [STAThread]
         static void Main()
         {
-            using (var game = new Game1(1200,1080,false))
+            using (var game = new Game1(1200,851,false))
                 game.Run();
         }
     }

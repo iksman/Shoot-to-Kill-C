@@ -10,6 +10,7 @@ namespace Shoot_to_Kill {
     bool canLeft();
     bool canRight();
     string type();
+		string returnExtra();
   }
   class Tiles {
     class NormalTile : ITile {
@@ -38,6 +39,9 @@ namespace Shoot_to_Kill {
       public string type() {
         return "normal";
       }
+			public string returnExtra() {
+				return null;
+			}
     }
     class HighwayTile : ITile {
       private bool down;
@@ -65,6 +69,9 @@ namespace Shoot_to_Kill {
       public string type() {
         return "highway";
       }
+			public string returnExtra() {
+				return null;
+			}
     }
 		class PenetratableTile : ITile { // Is naturally untraverseable
 			public PenetratableTile() {
@@ -83,6 +90,9 @@ namespace Shoot_to_Kill {
 			}
 			public string type() {
 				return "penetrate";
+			}
+			public string returnExtra() {
+				return null;
 			}
 
 		}
@@ -112,6 +122,9 @@ namespace Shoot_to_Kill {
       public string type() {
         return "bush";
       }
+			public string returnExtra() {
+				return null;
+			}
     }
     class UntraverseableTile : ITile {
       public bool canDown() {
@@ -129,17 +142,22 @@ namespace Shoot_to_Kill {
       public string type() {
         return "untravers";
       }
+			public string returnExtra() {
+				return null;
+			}
     }
     class CoinTile : ITile {
       private bool down;
       private bool up;
       private bool left;
       private bool right;
-      public CoinTile(bool up, bool down, bool left, bool right) {
+			private bool isFirst;
+      public CoinTile(bool up, bool down, bool left, bool right, bool isFirst) {
         this.down = down;
         this.up = up;
         this.left = left;
         this.right = right;
+				this.isFirst = isFirst;
       }
       public bool canDown() {
         return down;
@@ -156,6 +174,9 @@ namespace Shoot_to_Kill {
       public string type() {
         return "coin";
       }
+			public string returnExtra() {
+				return isFirst.ToString();
+			}
     }
     class GunTile : ITile {
       private bool down;
@@ -183,6 +204,9 @@ namespace Shoot_to_Kill {
       public string type() {
         return "gun";
       }
+			public string returnExtra() {
+				return null;
+			}
     }
     class TruckTile : ITile {
       private bool down;
@@ -210,6 +234,9 @@ namespace Shoot_to_Kill {
       public string type() {
         return "truck";
       }
+			public string returnExtra() {
+				return null;
+			}
     }
 
     class CustomTile : ITile {
@@ -218,12 +245,14 @@ namespace Shoot_to_Kill {
       private bool left;
       private bool right;
       private string _type;
-      public CustomTile(bool up, bool down, bool left, bool right, string type) {
+			private string _returnExtra;
+      public CustomTile(bool up, bool down, bool left, bool right, string type, string extraReturn) {
         this.down = down;
         this.up = up;
         this.left = left;
         this.right = right;
         this._type = type;
+				this._returnExtra = extraReturn;
       }
       public bool canDown() {
         return down;
@@ -240,6 +269,9 @@ namespace Shoot_to_Kill {
       public string type() {
         return _type;
       }
+			public string returnExtra() {
+				return _returnExtra;
+			}
     }
 
     private static NormalTile getAllNormal() {
@@ -248,11 +280,11 @@ namespace Shoot_to_Kill {
     private static BushTile getAllBush() {
       return new BushTile(true, true, true, true);
     }
-    private static CoinTile getAllCoin() {
-      return new CoinTile(true, true, true, true);
+    private static CoinTile getAllCoin(bool isFirst) {
+      return new CoinTile(true, true, true, true, isFirst);
     }
-    private static CustomTile getAllCustom(string type) {
-      return new CustomTile(true, true, true, true, type);
+    private static CustomTile getAllCustom(string type, string extraReturn) {
+      return new CustomTile(true, true, true, true, type, extraReturn);
     }
     private static GunTile getAllGun() {
       return new GunTile(true, true, true, true);
@@ -289,7 +321,7 @@ namespace Shoot_to_Kill {
 				for (int i = 0; i < 5; i++) {
 					tileList.Add(getAllNormal());
 				}
-				tileList.Add(getAllCoin());
+				tileList.Add(getAllCoin(true));
         tileList.Add(new NormalTile(true, true, true, false));
         Console.WriteLine("1: " + (tileList.Count() - oldCount).ToString());
         oldCount = tileList.Count();
@@ -337,7 +369,7 @@ namespace Shoot_to_Kill {
         }
         tileList.Add(new BushTile(false, true, true, true));
         tileList.Add(new BushTile(false, true, true, true));
-        tileList.Add(new NormalTile(true, true, true, false));
+        tileList.Add(new CustomTile(true, true, true, false, "normalentry","35up"));
         tileList.Add(new NormalTile(true, true, false, true));
         tileList.Add(getAllNormal());
         tileList.Add(new NormalTile(false, true, true, true));
@@ -485,7 +517,7 @@ namespace Shoot_to_Kill {
         }
         tileList.Add(new NormalTile(true, true, true, false));
         tileList.Add(new TruckTile(false, true, false, true));
-        tileList.Add(new NormalTile(false, true, true, true));
+        tileList.Add(new CustomTile(false, true, true, true,"normalentry","35left"));
         tileList.Add(getAllNormal());
         tileList.Add(new NormalTile(true, false, true, true));
         tileList.Add(getAllNormal());
@@ -533,7 +565,7 @@ namespace Shoot_to_Kill {
         oldCount = tileList.Count();
         // Line 16
         tileList.Add(new BushTile(true, true, false, true));
-        tileList.Add(getAllCoin());
+        tileList.Add(getAllCoin(false));
         tileList.Add(getAllBush());
         tileList.Add(new NormalTile(false, false, true, true));
         tileList.Add(new NormalTile(true, false, true, true));
