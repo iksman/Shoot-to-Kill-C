@@ -90,6 +90,14 @@ namespace Shoot_to_Kill {
 			return returnList;
 		}
 
+		public static bool checkTruck (List<int> rolls, double step) {
+			if (rolls.Contains((int) step)) {
+				return true;
+			}	else {
+				return false;
+			}
+		}
+
 		public static void debugSpecificChar(KeyboardState oldKeyboardState, KeyboardState newKeyboardState, SpriteBatch spriteBatch, Character character, List<Character> characters, MouseState oldMouseState, MouseState newMouseState) {
 			if (oldKeyboardState.IsKeyUp(Keys.Enter) == true && newKeyboardState.IsKeyDown(Keys.Enter) == true) {
 				character.setPos(1);

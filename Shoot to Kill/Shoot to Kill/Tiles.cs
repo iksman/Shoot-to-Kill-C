@@ -369,7 +369,7 @@ namespace Shoot_to_Kill {
         }
         tileList.Add(new BushTile(false, true, true, true));
         tileList.Add(new BushTile(false, true, true, true));
-        tileList.Add(new CustomTile(true, true, true, false, "normalentry","35up"));
+        tileList.Add(new CustomTile(true, true, true, false, "normalentry","35up__"));
         tileList.Add(new NormalTile(true, true, false, true));
         tileList.Add(getAllNormal());
         tileList.Add(new NormalTile(false, true, true, true));

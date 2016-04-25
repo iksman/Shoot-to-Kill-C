@@ -58,7 +58,9 @@ namespace Shoot_to_Kill {
 			if (currentTile().tile.canLeft()) {
 				if (otherPositions.Contains(pos - 1) != true) {
 					if (stepsleft == 1 && (pos - 1) == oldposition) {
-						//geen hond
+						if (tileList[pos - 1].tile.type().Contains("truck")) {
+							tileList[pos - 1].Draw(spriteBatch);
+						}
 					} else {
 						tileList[pos - 1].Draw(spriteBatch);
 					}
@@ -67,7 +69,9 @@ namespace Shoot_to_Kill {
 			if (currentTile().tile.canRight()) {
 				if (otherPositions.Contains(pos + 1) != true) {
 					if (stepsleft == 1 && (pos + 1) == oldposition) {
-						//geen hond
+						if (tileList[pos + 1].tile.type().Contains("truck")) {
+							tileList[pos + 1].Draw(spriteBatch);
+						}
 					}	else {
 						tileList[pos + 1].Draw(spriteBatch);
 					}
@@ -76,8 +80,11 @@ namespace Shoot_to_Kill {
 			if (currentTile().tile.canUp()) {
 				if (otherPositions.Contains(pos - offsety) != true) {
 					if (stepsleft == 1 && (pos - offsety) == oldposition) {
-						//geen hond
-					}else{
+						if (tileList[pos - offsety].tile.type().Contains("truck")) {
+							tileList[pos - offsety].Draw(spriteBatch);
+						}
+					}
+					else{
 						tileList[pos - offsety].Draw(spriteBatch);
 					}
 				}
@@ -85,8 +92,11 @@ namespace Shoot_to_Kill {
 			if (currentTile().tile.canDown()) {
 				if (otherPositions.Contains(pos + offsety) != true) {
 					if (stepsleft == 1 && (pos + offsety) == oldposition) {
-						//geen hond
-					}else {
+						if (tileList[pos + offsety].tile.type().Contains("truck")) {
+							tileList[pos + offsety].Draw(spriteBatch);
+						}
+					}
+					else {
 						tileList[pos + offsety].Draw(spriteBatch);
 					}
 				}
@@ -104,9 +114,6 @@ namespace Shoot_to_Kill {
 			Console.WriteLine("left: " + left.ToString());
 			Console.WriteLine("right: " + right.ToString());
 			Console.WriteLine("mouse: " + mouseState.Position.ToString());*/
-			if (tileList[pos].tile.type().Contains("entry")) {
-
-			}
 			if (up.Contains(mouseState.Position)
 				&& tileList[pos].tile.canUp() == true
 				&& oldMouseState.LeftButton == ButtonState.Released
@@ -128,7 +135,17 @@ namespace Shoot_to_Kill {
 				&& oldMouseState.LeftButton == ButtonState.Released
 				&& mouseState.LeftButton == ButtonState.Pressed
 				&& otherpos.Contains(pos + Game1.tilesx) != true) {
-				if ((pos + Game1.tilesx) == oldposition && stepsleft == 1) { }
+				if ((pos + Game1.tilesx) == oldposition && stepsleft == 1) {
+					if (tileList[pos + Game1.tilesx].tile.type().Contains("truck")) {
+						pos += Game1.tilesx;
+						if (tileList[pos].tile.type().Contains("highway")) {
+							stepsleft -= 0.5;
+						}
+						else {
+							stepsleft -= 1;
+						}
+					}
+				}
 				else {
 					pos += Game1.tilesx;
 					if (tileList[pos].tile.type().Contains("highway")) {
@@ -145,7 +162,12 @@ namespace Shoot_to_Kill {
 				&& mouseState.LeftButton == ButtonState.Pressed
 				&& otherpos.Contains(pos - 1) != true
 				) {
-				if ((pos - 1) == oldposition && stepsleft == 1) { } else { 
+				if ((pos - 1) == oldposition && stepsleft == 1) {
+					if (tileList[pos - 1].tile.type().Contains("truck")) {
+						pos -= 1;
+						stepsleft -= 1;
+					}
+				} else { 
 					pos -= 1;
 					if (tileList[pos].tile.type().Contains("highway")) {
 						stepsleft -= 0.5;
