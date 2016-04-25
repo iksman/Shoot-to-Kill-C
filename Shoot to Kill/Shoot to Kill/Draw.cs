@@ -12,17 +12,19 @@ namespace Shoot_to_Kill {
   }
   class BackgroundMap : IDrawable {
     private Texture2D texture;
-    public BackgroundMap(Texture2D texture) {
-      this.texture = texture;
+		public Vector2 pos;
+    public BackgroundMap(Texture2D texture, GraphicsDeviceManager graphics) {
+			this.texture = texture;
+			this.pos = Statics.getOffsetForMap(texture, graphics);
     }
     public void Draw(SpriteBatch spriteBatch) {
-      spriteBatch.Draw(texture, new Vector2(0, 0), Color.White);
+      spriteBatch.Draw(texture, pos, Color.White);
     }
   }
   class DrawableTile : IDrawable {
-    private Texture2D texture;
-    private Vector2 position;
-    private ITile tile;
+    public Texture2D texture;
+    public Vector2 position;
+    public ITile tile;
     public DrawableTile(Texture2D texture, Vector2 vector2, ITile itile) {
       this.texture = texture;
       this.position = vector2;

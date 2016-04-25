@@ -66,6 +66,26 @@ namespace Shoot_to_Kill {
         return "highway";
       }
     }
+		class PenetratableTile : ITile { // Is naturally untraverseable
+			public PenetratableTile() {
+			}
+			public bool canDown() {
+				return false;
+			}
+			public bool canLeft() {
+				return false;
+			}
+			public bool canRight() {
+				return false;
+			}
+			public bool canUp() {
+				return false;
+			}
+			public string type() {
+				return "penetrate";
+			}
+
+		}
     class BushTile : ITile {
       private bool down;
       private bool up;
@@ -262,10 +282,14 @@ namespace Shoot_to_Kill {
         for (int i = 0; i < 4; i++) {
           tileList.Add(getAllBush());
         }
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 4; i++) {
           tileList.Add(getAllNormal());
         }
-        tileList.Add(getAllCoin());
+				tileList.Add(new NormalTile(true, false, true, true));
+				for (int i = 0; i < 5; i++) {
+					tileList.Add(getAllNormal());
+				}
+				tileList.Add(getAllCoin());
         tileList.Add(new NormalTile(true, true, true, false));
         Console.WriteLine("1: " + (tileList.Count() - oldCount).ToString());
         oldCount = tileList.Count();
@@ -281,9 +305,10 @@ namespace Shoot_to_Kill {
         tileList.Add(new NormalTile(true, true, true, false));
         tileList.Add(new UntraverseableTile());
         tileList.Add(new NormalTile(true, true, false, true));
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 5; i++) {
           tileList.Add(getAllNormal());
         }
+				tileList.Add(new NormalTile(true, true, true, false));
         Console.WriteLine("1: " + (tileList.Count() - oldCount).ToString());
         oldCount = tileList.Count();
         //Line 4
@@ -292,7 +317,7 @@ namespace Shoot_to_Kill {
         tileList.Add(getAllBush());
         tileList.Add(new BushTile(true, true, true, false));
         tileList.Add(new GunTile(false, false, false, true));
-        tileList.Add(new TruckTile(false, false, true, false));
+        tileList.Add(new TruckTile(false, false, true, true));
         tileList.Add(new TruckTile(false, true, true, false));
         tileList.Add(new NormalTile(true, true, false, true));
         tileList.Add(new NormalTile(true, true, true, false));
@@ -452,7 +477,7 @@ namespace Shoot_to_Kill {
         oldCount = tileList.Count();
         // Line 13
         tileList.Add(new NormalTile(true, true, false, false));
-        tileList.Add(new UntraverseableTile());
+        tileList.Add(new PenetratableTile());
         tileList.Add(new NormalTile(true, true, false, true));
         tileList.Add(new NormalTile(true, false, true, true));
         for (int i = 0; i < 5; i++) {
@@ -470,9 +495,9 @@ namespace Shoot_to_Kill {
         oldCount = tileList.Count();
         // Line 14
         tileList.Add(new BushTile(true, true, false, false));
-        tileList.Add(new UntraverseableTile());
+        tileList.Add(new PenetratableTile());
         tileList.Add(new NormalTile(true, true, false, false));
-        tileList.Add(new UntraverseableTile());
+        tileList.Add(new PenetratableTile());
         tileList.Add(new NormalTile(true, true, false, true));
         for (int i = 0; i < 4; i++) {
           tileList.Add(getAllNormal());
@@ -491,7 +516,7 @@ namespace Shoot_to_Kill {
         tileList.Add(new BushTile(true, true, false, true));
         tileList.Add(new BushTile(false,true,true,true));
         tileList.Add(new BushTile(true, true, true, false));
-        tileList.Add(new UntraverseableTile());
+        tileList.Add(new PenetratableTile());
         tileList.Add(new NormalTile(true, true, false, true));
         for (int i = 0; i < 4; i++) {
           tileList.Add(getAllNormal());
@@ -529,8 +554,8 @@ namespace Shoot_to_Kill {
         tileList.Add(new BushTile(true, false, false, true));
         tileList.Add(new BushTile(true, false, true, true));
         tileList.Add(new BushTile(true, false, true, false));
-        tileList.Add(new UntraverseableTile());
-        tileList.Add(new UntraverseableTile());
+        tileList.Add(new PenetratableTile());
+        tileList.Add(new PenetratableTile());
         tileList.Add(new NormalTile(true, false, false, true));
         for (int i = 0; i < 10; i++) {
           tileList.Add(new NormalTile(true, false, true, true));
